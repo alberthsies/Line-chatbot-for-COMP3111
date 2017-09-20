@@ -29,29 +29,35 @@ public class DatabaseEngine {
 		BufferedReader br = null;
 		InputStreamReader isr = null;
 		try {
-			isr = new InputStreamReader(
-                    this.getClass().getResourceAsStream(FILENAME));
+			isr = new InputStreamReader(this.getClass().getResourceAsStream(FILENAME));
 			br = new BufferedReader(isr);
 			String sCurrentLine;
 			
-			while (result != null && (sCurrentLine = br.readLine()) != null) {
+			while (/*result != null && */(sCurrentLine = br.readLine()) != null) {
 				String[] parts = sCurrentLine.split(":");
 				if (text.toLowerCase().equals(parts[0].toLowerCase())) {
 					result = parts[1];
 				}
 			}
-		} catch (IOException e) {
+		}
+		
+		catch (IOException e) {
 			log.info("IOException while reading file: {}", e.toString());
-		} finally {
+		}
+		
+		finally {
 			try {
 				if (br != null)
 					br.close();
 				if (isr != null)
 					isr.close();
-			} catch (IOException ex) {
+			}
+			
+			catch (IOException ex) {
 				log.info("IOException while closing file: {}", ex.toString());
 			}
 		}
+		
 		if (result != null)
 			return result;
 		throw new Exception("NOT FOUND");
