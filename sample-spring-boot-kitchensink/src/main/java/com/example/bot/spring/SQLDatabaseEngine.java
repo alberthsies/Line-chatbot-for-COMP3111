@@ -16,7 +16,7 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 	String search(String text) throws Exception {
 		//Write your code here
 		String result = null;
-		
+		System.out.println("add something here");
 		try {
 			Connection con = this.getConnection();
 			PreparedStatement stmt = con.prepareStatement("SELECT keyword, response FROM labdb where keyword = ?");
